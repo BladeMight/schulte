@@ -1,4 +1,4 @@
-name=shulte
+name=schulte
 conflg= -lgdi32 -lcomctl32 -o
 uni= -DUNICODE -D_UNICODE
 all:
