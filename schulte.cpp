@@ -134,17 +134,17 @@ long int ConvertToInt(wchar_t* integer) {
 }
 
 int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show) {
-	LPWSTR* szArgList;
-    int argCount;
-    szArgList = CommandLineToArgvW(GetCommandLine(), &argCount);
-	if (szArgList != NULL) {
-		if (argCount >= 2)
-			if (isint(szArgList[1]))
-				tablex = ConvertToInt(szArgList[1]);
-		if (argCount >= 3) {
-			if (isint(szArgList[2]))
-				p = ConvertToInt(szArgList[2]);
-			if (wcscmp(szArgList[2], L"-1") == 0)
+	LPWSTR* argv;
+    int argc;
+    argv = CommandLineToArgvW(GetCommandLine(), &argc);
+	if (argv != NULL) {
+		if (argc >= 2)
+			if (isint(argv[1]))
+				tablex = ConvertToInt(argv[1]);
+		if (argc >= 3) {
+			if (isint(argv[2]))
+				p = ConvertToInt(argv[2]);
+			if (wcscmp(argv[2], L"-1") == 0)
 				p = -1;
 		}
 		max             = tablex*tablex;
@@ -153,7 +153,7 @@ int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmd, int show) {
 		if (p < 0) 
 			hw += 2;
 	}
-	LocalFree(szArgList);
+	LocalFree(argv);
     HWND wnd = createWindow(inst);
     MSG msg;
 	while(GetMessage(&msg, NULL, 0, 0)) {
