@@ -102,6 +102,11 @@ LRESULT CALLBACK wndProc(HWND wnd, UINT msg, WPARAM w, LPARAM l) {
 		case WM_DESTROY:
 			PostQuitMessage(0);
 			break;
+		case WM_KEYDOWN:
+			if (w == VK_ESCAPE) {
+				PostQuitMessage(0);
+			}
+			break;
     }
     return DefWindowProc(wnd,msg,w,l);
 }
