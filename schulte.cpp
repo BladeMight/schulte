@@ -8,7 +8,7 @@ const int rect_size = 96;
 const int font_h    = 58;
 int tablex          = 5;
 int max             = tablex*tablex;
-int p        	     = 2;
+int p        	     = 1;
 int rawhw		    = tablex*rect_size;
 int hw              = rawhw + p*tablex;
 wchar_t name[]      = L"Таблица Шульте (BladeMight)";
@@ -43,6 +43,7 @@ void drawrects(HDC screen, HWND hwnd) {
 	int y = 0;
 	int known[tablex*tablex+5];
 	int leg = 0;
+	//{
 	// int nums[36] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36};
 	// random_shuffle(&nums[0],&nums[36]);
 	// for (int i = 0; i!= 36; i++) {
@@ -61,6 +62,7 @@ void drawrects(HDC screen, HWND hwnd) {
 		// }
 		
 	// }
+	//}
 	int tablx = 0;
 	for (int i = 1; i!=max+1; i++) {
 		tablx++;
@@ -72,11 +74,11 @@ void drawrects(HDC screen, HWND hwnd) {
 		// int right = 0;
 		// if (que >= 1 && que < 10)
 			// right = 12;
-		int left = 0;
-		if (que >= 10)
-			left = 12;
-		TextOut(screen, x+((rect_size)/2)-10-left,
-						y+(font_h/2)-8, buf, wcslen(buf));
+		int left = font_h/10;
+		if (que < 10)
+			left = font_h/3;
+		TextOut(screen, x+(rect_size-font_h)/2+left,
+						y+(rect_size-font_h)/2, buf, wcslen(buf));
 		x += rect_size+p;
 		if (tablx >= tablex) {
 			tablx = 0;
